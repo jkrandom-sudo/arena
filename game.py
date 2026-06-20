@@ -41,6 +41,9 @@ def fight(hero: arena.Hero, monster: arena.Monster,
             choice = input_func("> ").strip().lower()
         except EOFError:
             raise QuitGame()
+        if not choice:
+            output.write(t(lang, "unknown", choice="(empty)") + "\n")
+            continue
         if choice == "q":
             raise QuitGame()
         if choice == "a":
@@ -207,6 +210,9 @@ def settings_menu(s: dict, input_func, output) -> dict:
             choice = input_func(t(lang, "menu_choice")).strip().lower()
         except EOFError:
             break
+        if not choice:
+            output.write(t(lang, "unknown", choice="(empty)") + "\n")
+            continue
         if choice == "1":
             settings_mod.cycle_lang(s)
         elif choice == "2":
@@ -245,6 +251,9 @@ def main_menu(input_func=None, output=None, rng=None) -> None:
         except EOFError:
             output.write(t(lang, "bye") + "\n")
             return
+        if not choice:
+            output.write(t(lang, "unknown", choice="(empty)") + "\n")
+            continue
         if choice == "q":
             output.write(t(lang, "bye") + "\n")
             return
